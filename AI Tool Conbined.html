@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI检测工具查询</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    .screen-wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+    .game-canvas {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      transform-origin: center center;
+      transform: scale(min(100vw / 1920, 100vh / 1080));
+    }
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .bg-layer {
+      width: 1920px;
+      height: 1080px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ==========================================================================
+
+    ========================================================================== */
+    .btn-effect {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-effect:hover {
+      transform: scale(1.04);
+      filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+    }
+    .btn-effect:active {
+      transform: scale(0.94);
+      opacity: 0.85;
+    }
+
+    /* -------------------- 页面1 按钮 -------------------- */
+    .rectangle-2_18 {
+      width: 450px; height: 173px; position: absolute; left: 225px; top: 435px;
+      background-size: 426.6666% 624.2774%; background-position: -225px -435px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 1/image/165e336f726257ec723c0b2a55516c7a2ab279f3.png');
+    }
+    .rectangle-2_19 {
+      width: 450px; height: 173px; position: absolute; left: 746px; top: 435px;
+      background-size: 426.6666% 624.2774%; background-position: -746px -435px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 1/image/9d6a0ad2a6dfea3af7d9ab43c72e6a85eab783e0.png');
+    }
+    .rectangle-2_20 {
+      width: 432px; height: 173px; position: absolute; left: 1261px; top: 435px;
+      background-size: 444.4445% 624.2774%; background-position: -1261px -435px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 1/image/bd96520745ddf0e8225817c62cfb713c1eb90150.png');
+    }
+    .rectangle-2_21 {
+      width: 450px; height: 155px; position: absolute; left: 207px; top: 808px;
+      background-size: 426.6666% 696.7741%; background-position: -207px -808px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 1/image/aead2315e202e95506e62abc53f5cc5ef0a40801.png');
+    }
+    .rectangle-2_22 {
+      width: 450px; height: 184px; position: absolute; left: 746px; top: 808px;
+      background-size: 426.6666% 586.9565%; background-position: -746px -808px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 1/image/730f5020b7d724d9972fcd425f465c50991be3f7.png');
+    }
+    .rectangle-2_23 {
+      width: 432px; height: 173px; position: absolute; left: 1261px; top: 808px;
+      background-size: 444.4444% 624.2774%; background-position: -1261px -808px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 1/image/4c0fad46ec0a72867632fab148cc3e7f11e3cf05.png');
+    }
+
+    /* -------------------- 页面2 按钮 -------------------- */
+    .rectangle-2_29 {
+      width: 439px; height: 165px; position: absolute; left: 471px; top: 225px;
+      background-size: 437.3575% 654.5455%; background-position: -471px -225px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/7b68145667cf77ce2e3d520d9f601bd42f892672.png');
+    }
+    .rectangle-2_30 {
+      width: 439px; height: 165px; position: absolute; left: 1025px; top: 225px;
+      background-size: 437.3576% 654.5455%; background-position: -1025px -225px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/348b4f487798a236cdf39e981528210a6186c60d.png');
+    }
+    .rectangle-2_32 {
+      width: 439px; height: 165px; position: absolute; left: 759px; top: 540px;
+      background-size: 437.3576% 654.5455%; background-position: -759px -540px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/c4413c6a4eaaa4e857f56e01a004a68db2bbd77a.png');
+    }
+    .rectangle-2_33 {
+      width: 439px; height: 165px; position: absolute; left: 1261px; top: 540px;
+      background-size: 437.3577% 654.5455%; background-position: -1261px -540px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/60a1b063863a919aec76fd4b15416839f716cc90.png');
+    }
+    .rectangle-2_35 {
+      width: 439px; height: 165px; position: absolute; left: 1025px; top: 863px;
+      background-size: 437.3576% 654.5455%; background-position: -1025px -863px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/3d44ca9e42901e1352cc1eb345b82a79f5e836d1.png');
+    }
+    .rectangle-2_36 {
+      width: 439px; height: 165px; position: absolute; left: 223px; top: 540px;
+      background-size: 437.3576% 654.5455%; background-position: -223px -540px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/8791df7d2785d84226355c1fb0c2353663a6aa40.png');
+    }
+    .rectangle-2_37 {
+      width: 439px; height: 165px; position: absolute; left: 471px; top: 863px;
+      background-size: 437.3576% 654.5453%; background-position: -471px -226px;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/7b68145667cf77ce2e3d520d9f601bd42f892672.png');
+    }
+
+    /* 背景图不变 */
+    .rectangle-2_14 { background-image: url('./AI Tool 1/image/47d7df6493608dbe40e8a6612a6d58856077f83b.png'); }
+    .rectangle-2_16 { background-image: url('./AI Tool 1/image/ea5b30e1f516cad74013da2d72edc629dc15809a.png'); }
+    .rectangle-2_17 { background-image: url('./AI Tool 1/image/25822019e58edee0624ce6d2a2392425ed3dc308.png'); }
+    .rectangle-2_25 { background-image: url('./AI Tool 2/image/7ee66b96b1a43f1d0d61db7e1953b9e7cc24c643.png'); }
+    .rectangle-2_31 { background-image: url('./AI Tool 2/image/a54ab73ab3ed6684366a8fb9ff81aeeed57c1b21.png'); }
+    .rectangle-2_28 {
+      width: 1411px; height: 883px; position: absolute; left: 0; top: 0;
+      background-size: 136.0737% 122.3103%; background-position: 0 0;
+      background-repeat: no-repeat; background-image: url('./AI Tool 2/image/c1c1bb217e095979a03df787b7ba9122684ecb05.png');
+    }
+    .rectangle-2_34 { background-image: url('./AI Tool 2/image/7788f6c91e631797d7ea3f4863f95e8dd003d61f.png'); }
+
+    /* 导航按钮 */
+    .nav-btn {
+      position: fixed;
+      bottom: 20px;
+      width: 110px;
+      height: 42px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 21px;
+      font-size: 15px;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover:not(:disabled) {
+      transform: scale(1.08);
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+    }
+    .nav-btn:active:not(:disabled) {
+      transform: scale(0.92);
+    }
+    .nav-btn.prev { left: 20px; }
+    .nav-btn.next { right: 20px; }
+    .nav-btn:disabled { background: #444; cursor: not-allowed; }
+
+    .page-indicator {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+    }
+    .indicator-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .indicator-dot:hover {
+      background: rgba(255,255,255,0.7);
+      transform: scale(1.3);
+    }
+    .indicator-dot.active {
+      background: #fff;
+      transform: scale(1.2);
+    }
+
+    /* 返回首页按钮 */
+    .back-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .back-home:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+    }
+    .back-home:active {
+      transform: scale(0.92);
+    }
+  </style>
+</head>
+<body>
+
+<a href="index/Index.html" class="back-home">
+  <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M11 2L5 8l6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+  返回首页
+</a>
+
+<div class="screen-wrapper">
+  <div class="game-canvas">
+    <!-- 页面1 -->
+    <div id="page1" class="page active">
+      <div class="bg-layer rectangle-2_14"></div>
+      <div class="bg-layer rectangle-2_16"></div>
+      <div class="bg-layer rectangle-2_17"></div>
+      <div class="rectangle-2_18 btn-effect"></div>
+      <div class="rectangle-2_19 btn-effect"></div>
+      <div class="rectangle-2_20 btn-effect"></div>
+      <div class="rectangle-2_21 btn-effect"></div>
+      <div class="rectangle-2_22 btn-effect"></div>
+      <div class="rectangle-2_23 btn-effect"></div>
+    </div>
+
+    <!-- 页面2 -->
+    <div id="page2" class="page">
+      <div class="bg-layer rectangle-2_25"></div>
+      <div class="bg-layer rectangle-2_31"></div>
+      <div class="rectangle-2_28"></div>
+      <div class="bg-layer rectangle-2_34"></div>
+      <div class="rectangle-2_29 btn-effect"></div>
+      <div class="rectangle-2_30 btn-effect"></div>
+      <div class="rectangle-2_32 btn-effect"></div>
+      <div class="rectangle-2_33 btn-effect"></div>
+      <div class="rectangle-2_35 btn-effect"></div>
+      <div class="rectangle-2_36 btn-effect"></div>
+      <div class="rectangle-2_37 btn-effect"></div>
+    </div>
+  </div>
+</div>
+
+<button class="nav-btn prev" onclick="prevPage()">上一页</button>
+<button class="nav-btn next" onclick="nextPage()">下一页</button>
+<div class="page-indicator">
+  <div class="indicator-dot active" onclick="goToPage(1)"></div>
+  <div class="indicator-dot" onclick="goToPage(2)"></div>
+</div>
+
+<script>
+  let currentPage = 1;
+  const totalPages = 2;
+
+  function updatePage() {
+    document.querySelectorAll('.page').forEach((p, i) => {
+      p.classList.toggle('active', i + 1 === currentPage);
+    });
+    document.querySelectorAll('.indicator-dot').forEach((d, i) => {
+      d.classList.toggle('active', i + 1 === currentPage);
+    });
+    document.querySelector('.prev').disabled = currentPage === 1;
+    document.querySelector('.next').disabled = currentPage === totalPages;
+  }
+
+  function goToPage(n) {
+    if (n >= 1 && n <= totalPages) {
+      currentPage = n;
+      updatePage();
+    }
+  }
+  function nextPage() { goToPage(currentPage + 1); }
+  function prevPage() { goToPage(currentPage - 1); }
+
+  // ========== 所有按钮点击跳转 ==========
+  const click = (url) => window.open(url, '_blank');
+
+  document.querySelector('.rectangle-2_18').onclick = ()=>click('https://gptzero.me/');
+  document.querySelector('.rectangle-2_19').onclick = ()=>click('https://aidetector.com/?new_locale=zh-cn');
+  document.querySelector('.rectangle-2_20').onclick = ()=>click('https://mydetector.ai/zh/');
+  document.querySelector('.rectangle-2_21').onclick = ()=>click('https://matrix.tencent.com/ai-detect/ai_gen');
+  document.querySelector('.rectangle-2_22').onclick = ()=>click('https://mydetector.ai/zh/ai-image-detector/');
+  document.querySelector('.rectangle-2_23').onclick = ()=>click('https://www.aidetectlab.com/zh');
+
+  document.querySelector('.rectangle-2_29').onclick = ()=>click('https://matrix.tencent.com/ai-detect/ai_gen');
+  document.querySelector('.rectangle-2_30').onclick = ()=>click('https://undetectable.ai/zh/ai-video-detector');
+  document.querySelector('.rectangle-2_32').onclick = ()=>click('https://www.pindrop.com/product/pindrop-pulse/inspect/');
+  document.querySelector('.rectangle-2_33').onclick = ()=>click('https://hivemoderation.com/ai-generated-content-detection');
+  document.querySelector('.rectangle-2_35').onclick = ()=>click('https://mydetector.ai/zh/');
+  document.querySelector('.rectangle-2_36').onclick = ()=>click('https://aivoicedetector.com/');
+  document.querySelector('.rectangle-2_37').onclick = ()=>click('https://undetectable.ai/zh/ai-video-detector');
+
+  updatePage();
+</script>
+
+</body>
+</html>

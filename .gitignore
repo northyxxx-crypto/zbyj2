@@ -1,0 +1,18 @@
+# 忽略 Cursor 配置文件夹
+.cursor/
+
+# 忽略临时文件
+*.tmp
+*.log
+*.bak
+
+# 忽略系统文件
+Thumbs.db
+.DS_Store
+
+# 忽略大型二进制文件（可选，取消注释可以忽略图片和文档）
+# *.png
+# *.jpg
+# *.gif
+# *.docx
+# *.pdf

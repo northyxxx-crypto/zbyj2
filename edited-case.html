@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北京互联网法院涉人工智能典型案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* 背景图 */
+        body {
+            background-image: url('C:/Users/Administrator/Desktop/智标网页开发/背景图深蓝.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* 半透明白底容器 */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin: 20px auto;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 标题区域 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #2c3e50;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #7f8c8d;
+            font-weight: 400;
+        }
+
+        /* 页码提示 */
+        .page-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #95a5a6;
+            letter-spacing: 1px;
+        }
+
+        .page-info span {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0 4px;
+        }
+
+        /* 案例内容区 */
+        .case-content {
+            min-height: 480px;
+            line-height: 1.9;
+            font-size: 16px;
+            color: #34495e;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .case-content h3 {
+            color: #2c3e50;
+            margin: 0 0 25px 0;
+            font-size: 24px;
+            font-weight: 600;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .case-content h3::before {
+            content: '📋';
+            font-size: 20px;
+        }
+
+        .case-content p {
+            margin-bottom: 0;
+            text-align: justify;
+            line-height: 2;
+        }
+
+        .case-content .section-title {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 20px 0 12px 0;
+            font-size: 17px;
+        }
+
+        .case-content .section-title:first-child {
+            margin-top: 0;
+        }
+
+        /* 分页按钮 */
+        .page-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .page-btn {
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .page-btn:hover::before {
+            left: 100%;
+        }
+
+        .page-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .page-btn:active {
+            transform: translateY(0);
+        }
+
+        .page-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .page-btn:disabled:hover {
+            transform: none;
+        }
+
+        /* 返回首页按钮 */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-home:hover {
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .back-home:active {
+            transform: scale(0.95);
+        }
+
+        .back-home svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .container {
+                padding: 30px 25px;
+                border-radius: 16px;
+            }
+
+            .title {
+                font-size: 26px;
+                letter-spacing: 1px;
+            }
+
+            .case-content {
+                padding: 20px;
+                min-height: 400px;
+            }
+
+            .case-content h3 {
+                font-size: 20px;
+            }
+
+            .page-btn {
+                padding: 12px 30px;
+                font-size: 15px;
+            }
+
+            .page-buttons {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 22px;
+            }
+
+            .case-content h3 {
+                font-size: 18px;
+            }
+
+            .page-btn {
+                padding: 10px 24px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="index/Index.html" class="back-home">
+  <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M11 2L5 8l6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+  返回首页
+</a>
+
+<div class="container">
+        <div class="header">
+            <div class="title">北京互联网法院涉人工智能典型案例</div>
+            <div class="subtitle">Artificial Intelligence Typical Cases</div>
+        </div>
+        <div class="page-info">第 <span id="pageNum">1</span> 页 / 共 <span id="totalPage">8</span> 页</div>
+        <div class="case-content" id="caseBox">
+            <h3>案例一：AI文生图著作权认定案</h3>
+            <p><span class="section-title">【基本案情】</span>2023年2月，原告李某某使用Stable Diffusion生成少女特写图片并发布小红书。被告刘某某截取图片去除水印，在百家号使用，原告起诉维权。<br><br><span class="section-title">【裁判结果】</span>法院认定涉案图片属于美术作品，原告通过提示词、参数设置投入智力成果，享有著作权。被告侵害署名权与信息网络传播权，被判赔礼道歉并赔偿损失。<br><br><span class="section-title">【典型意义】</span>明确AI生成内容符合作品要件即受著作权法保护，根据智力贡献认定权利归属，为AI生成内容司法审查提供范式。</p>
+        </div>
+        <div class="page-buttons">
+            <button class="page-btn" id="prevBtn" disabled>上一页</button>
+            <button class="page-btn" id="nextBtn">下一页</button>
+        </div>
+    </div>
+
+    <script>
+        // 8个案例完整内容
+        const cases = [
+            {
+                title: "案例一：AI文生图著作权认定案",
+                content: `【基本案情】
+2023年2月，原告李某某使用Stable Diffusion生成少女特写图片并发布小红书。被告刘某某截取图片去除水印，在百家号使用，原告起诉维权。
+
+【裁判结果】
+法院认定涉案图片属于美术作品，原告通过提示词、参数设置投入智力成果，享有著作权。被告侵害署名权与信息网络传播权，被判赔礼道歉并赔偿损失。
+
+【典型意义】
+明确AI生成内容符合作品要件即受著作权法保护，根据智力贡献认定权利归属，为AI生成内容司法审查提供范式。`
+            },
+            {
+                title: "案例二：AI合成声音侵犯声音权益案",
+                content: `【基本案情】
+配音演员殷某某发现其声音被AI合成用于文本转语音产品商用，多家公司未经许可使用其声音素材。
+
+【裁判结果】
+法院认定AI合成声音与原告高度近似、具有可识别性，构成声音权益侵权。声音具有人格属性，未经许可AI化使用构成侵权，相关公司承担赔偿责任。
+
+【典型意义】
+确立AI合成声音的声音权保护标准，划定AI技术应用边界，规范AI声音合成行为。`
+            },
+            {
+                title: "案例三：AI合成名人声音带货侵权案",
+                content: `【基本案情】
+某文化传媒公司使用李某某肖像与高度近似AI合成声音制作带货视频，误导公众认为系本人代言。
+
+【裁判结果】
+法院认定AI合成声音具有可识别性，侵害肖像权与声音权。委托带货的商家未尽审查义务，与发布者承担连带责任。
+
+【典型意义】
+明确AI“声替”带货侵权规则，压实电商商家审核责任，治理AI深度合成滥用乱象。`
+            },
+            {
+                title: "案例四：AI换脸侵害个人信息权益案",
+                content: `【基本案情】
+某科技公司未经授权使用博主廖某视频制作AI换脸付费模板，替换面部后提供用户使用。
+
+【裁判结果】
+换脸未直接使用面部肖像，不构成肖像权侵权，但收集、处理人脸信息未经同意，侵害个人信息权益，被判赔礼道歉并赔偿。
+
+【典型意义】
+区分AI换脸场景下肖像权与个人信息权益边界，兼顾人格保护与产业发展。`
+            },
+            {
+                title: "案例五：平台算法误判AI内容违约案",
+                content: `【基本案情】
+用户唐某某原创短文被平台算法判定为AI生成未标识，遭隐藏与禁言。用户申诉未果后起诉。
+
+【裁判结果】
+平台算法判定未履行合理解释说明义务，即时性原创文本难以提供底稿，平台处理无依据，构成违约，需恢复内容并删除记录。
+
+【典型意义】
+确立AI内容标识与平台算法审查规则，合理分配举证责任，提升AI内容治理水平。`
+            },
+            {
+                title: "案例六：AI恶搞丑化肖像人格权侵权案",
+                content: `【基本案情】
+孙某使用AI将程某微信头像制作为暴露、畸形动漫图并发群聊与私信，造成低俗评价与心理伤害。
+
+【裁判结果】
+构成肖像权、名誉权、一般人格权侵权，被判公开赔礼道歉并赔偿精神损失。
+
+【典型意义】
+明确AI恶搞、丑化他人形象构成人格权侵权，划定普通用户使用AI的行为边界。`
+            },
+            {
+                title: "案例七：虚拟数字人形象著作权案",
+                content: `【基本案情】
+孙某某擅自售卖知名虚拟数字人甲、乙的模型，平台方被诉共同侵权。
+
+【裁判结果】
+虚拟数字人具有独创性艺术设计，构成美术作品。被告售卖行为侵害信息网络传播权，平台不构成共同侵权。
+
+【典型意义】
+明确虚拟数字人形象可构成美术作品受著作权法保护，助力数字人产业规范发展。`
+            },
+            {
+                title: "案例八：未经许可创设AI虚拟形象侵权案",
+                content: `【基本案情】
+某AI公司软件允许用户创设公众人物何某的AI陪伴形象，推送肖像、情话，模拟真人互动。
+
+【裁判结果】
+未经许可使用姓名、肖像创设AI虚拟形象，侵害姓名权、肖像权与一般人格权。平台通过算法参与内容生成，应承担内容提供者责任。
+
+【典型意义】
+明确自然人人格权及于AI虚拟形象，算法深度参与的平台需承担侵权责任。`
+            }
+        ];
+
+        // 分页逻辑
+        let currentPage = 1;
+        const totalPage = cases.length;
+        const caseBox = document.getElementById('caseBox');
+        const pageNum = document.getElementById('pageNum');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // 渲染当前页
+        function renderPage() {
+            const item = cases[currentPage - 1];
+            const formattedContent = item.content
+                .replace(/【([^】]+)】/g, '<span class="section-title">【$1】</span>')
+                .replace(/\n/g, '<br>');
+            caseBox.innerHTML = `
+                <h3>${item.title}</h3>
+                <p>${formattedContent}</p>
+            `;
+            pageNum.textContent = currentPage;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPage;
+        }
+
+        // 上一页
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderPage();
+            }
+        });
+
+        // 下一页
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPage) {
+                currentPage++;
+                renderPage();
+            }
+        });
+
+        // 初始加载
+        renderPage();
+    </script>
+
+</body></html>

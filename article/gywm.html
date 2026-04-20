@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 智标云鉴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        body {
+            background: url('./images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f0f7ff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .article-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.3s forwards;
+        }
+
+        .article-meta {
+            color: #718096;
+            font-size: 0.95rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-content {
+            padding-top: 10px;
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin: 35px 0 20px;
+            padding-left: 18px;
+            border-left: 4px solid #667eea;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.6s forwards;
+        }
+
+        .article-content p {
+            line-height: 2.1;
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            text-align: justify;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .article-content p:nth-of-type(1) { animation-delay: 0.7s; }
+        .article-content p:nth-of-type(2) { animation-delay: 0.85s; }
+        .article-content p:nth-of-type(3) { animation-delay: 1s; }
+        .article-content p:nth-of-type(4) { animation-delay: 1.15s; }
+        .article-content p:nth-of-type(5) { animation-delay: 1.3s; }
+        .article-content p:nth-of-type(6) { animation-delay: 1.45s; }
+        .article-content p:nth-of-type(7) { animation-delay: 1.6s; }
+
+        .decoration {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            opacity: 0.15;
+        }
+
+        .article-container {
+            position: relative;
+        }
+
+        .article-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-container {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .article-footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px dashed #e2e8f0;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 1.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .article-footer p {
+            color: #a0aec0;
+            font-size: 0.85rem;
+            text-indent: 0 !important;
+            margin-bottom: 0;
+        }
+
+        /* 返回按钮样式 */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.8s forwards;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
+        .back-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #667eea;
+            transition: fill 0.3s ease;
+        }
+
+        .back-btn:hover svg {
+            fill: #764ba2;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .article-container {
+                padding: 30px 25px;
+                border-radius: 16px;
+            }
+
+            .article-title {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .article-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .article-content p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index/Index.html" class="back-btn" title="返回首页">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+    </a>
+    <div class="article-container">
+        <svg class="decoration" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        
+        <div class="article-header">
+            <h1 class="article-title">关于我们</h1>
+            <div class="article-meta">智标云鉴 · 创新创业团队</div>
+        </div>
+        
+        <div class="article-content">
+            <h2>一、平台简介</h2>
+            <p>智标云鉴是一站式转载内容AI标识责任界定助手与合规检测平台，专注于解决人工智能生成合成内容在转载场景中因标识缺失引发的责任认定与合规难题。平台集成了AI检测工具查询、AI标识合规知识库、AI标识缺失责任量化计算器三大核心模块，为内容创作者、平台运营者、法律从业者及普通用户提供从内容检测到责任量化的全链条合规支持。</p>
+            <p>平台基于527份原始问卷数据构建了损害扩散模拟器与多主体责任量化分配模拟器，采用蒙特卡洛模拟与AHP层次分析法相结合的混合算法，能够科学量化传播损害程度并合理分配创作者、技术服务商、首发平台、转载平台与普通用户五类主体的责任比例。同时，平台整合了主流AI检测工具的快速跳转入口，并提供法律法规、典型案例、合规操作指引等知识服务，助力用户一站式解决AI标识合规问题。</p>
+            
+            <h2>二、团队背景</h2>
+            <p>智标云鉴由中南财经政法大学创新创业团队"数法求真队"运营，团队聚焦人工智能生成合成内容标识缺失的法律问题研究，在责任认定、维权难点、标识合规等领域积累了扎实的理论成果与实践经验。团队运营的"读懂AI标识"公众号已发布多篇AI标识科普文章，包括《AI生成内容标识第一案》《平台转载场景下AI内容标识缺失的法律责任》等，获得良好社会反响。</p>
+            <p>团队成员具备法律研究、算法建模与产品开发的综合能力，团队以"守护数字权益"为使命，致力于为AI内容治理提供可落地的合规工具与法律支持。</p>
+        </div>
+
+        <div class="article-footer">
+            <p>智标云鉴 · 守护数字权益</p>
+        </div>
+    </div>
+</body>
+</html>

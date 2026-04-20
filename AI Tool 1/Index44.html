@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixso HTML</title>
+  <link rel="stylesheet" href="css/font.css">
+  <script src="js/animation.js"></script>
+  <style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ol,ul,menu {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+ol li::marker, ul li::before {
+  letter-spacing: 0;
+}
+
+.scroll-container > div {
+  width: 100%;
+}
+
+.container > div {
+  width: 100%;
+}
+
+.canvas-0_1 > div {
+  width: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body { 
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+}
+    
+span {
+  word-break: break-word;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.frame-4_4 {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rectangle-2_14 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/47d7df6493608dbe40e8a6612a6d58856077f83b.png);
+}
+
+.rectangle-2_16 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/ea5b30e1f516cad74013da2d72edc629dc15809a.png);
+}
+
+.rectangle-2_17 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/25822019e58edee0624ce6d2a2392425ed3dc308.png);
+}
+
+.rectangle-2_18 {
+  width: 450px;
+  height: 173px;
+  position: absolute;
+  left: 225px;
+  top: 435px;
+  background-size: 426.6666% 624.2774%;
+  background-position: -225.00px -435.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/165e336f726257ec723c0b2a55516c7a2ab279f3.png);
+}
+
+.rectangle-2_19 {
+  width: 450px;
+  height: 173px;
+  position: absolute;
+  left: 746px;
+  top: 435px;
+  background-size: 426.6666% 624.2774%;
+  background-position: -746.00px -435.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/9d6a0ad2a6dfea3af7d9ab43c72e6a85eab783e0.png);
+}
+
+.rectangle-2_20 {
+  width: 432px;
+  height: 173px;
+  position: absolute;
+  left: 1261px;
+  top: 435px;
+  background-size: 444.4445% 624.2774%;
+  background-position: -1261.00px -435.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/bd96520745ddf0e8225817c62cfb713c1eb90150.png);
+}
+
+.rectangle-2_21 {
+  width: 450px;
+  height: 155px;
+  position: absolute;
+  left: 207px;
+  top: 808px;
+  background-size: 426.6666% 696.7741%;
+  background-position: -207.00px -808.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/aead2315e202e95506e62abc53f5cc5ef0a40801.png);
+}
+
+.rectangle-2_22 {
+  width: 450px;
+  height: 184px;
+  position: absolute;
+  left: 746px;
+  top: 808px;
+  background-size: 426.6666% 586.9565%;
+  background-position: -746.00px -808.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/730f5020b7d724d9972fcd425f465c50991be3f7.png);
+}
+
+.rectangle-2_23 {
+  width: 432px;
+  height: 173px;
+  position: absolute;
+  left: 1261px;
+  top: 808px;
+  background-size: 444.4444% 624.2774%;
+  background-position: -1261.00px -808.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/4c0fad46ec0a72867632fab148cc3e7f11e3cf05.png);
+}
+
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="4_4" class="frame-4_4">
+    <div id="2_14" class="rectangle-2_14"></div>
+    <div id="2_16" class="rectangle-2_16"></div>
+    <div id="2_17" class="rectangle-2_17"></div>
+    <div id="2_18" class="rectangle-2_18" style="cursor: pointer;"></div>
+    <div id="2_19" class="rectangle-2_19" style="cursor: pointer;"></div>
+    <div id="2_20" class="rectangle-2_20" style="cursor: pointer;"></div>
+    <div id="2_21" class="rectangle-2_21" style="cursor: pointer;"></div>
+    <div id="2_22" class="rectangle-2_22" style="cursor: pointer;"></div>
+    <div id="2_23" class="rectangle-2_23" style="cursor: pointer;"></div>
+  </div>
+</div>
+
+<script>
+const EventManager = {
+  handlers: new Map(),
+  addHandler(element, eventType, handler) {
+    if (!this.handlers.has(element)) {
+      this.handlers.set(element, {
+        boundEvents: new Set(),
+        blockingHandler: (e) => {
+          if (e.target === element || !element.contains(e.target)) {
+            if (!this.handlers.get(element).boundEvents.has(e.type)) {
+              e.stopPropagation();
+            }
+          }
+        }
+      });
+      const allEvents = ['mousedown', 'mouseup', 'click', 'dblclick', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave'];
+      allEvents.forEach(type => {
+        element.addEventListener(type, this.handlers.get(element).blockingHandler, true);
+      });
+    }
+    this.handlers.get(element).boundEvents.add(eventType);
+    element.addEventListener(eventType, handler);
+  }
+};
+
+function handle_2_18_4_10(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://gptzero.me/').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_19_4_9(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://aidetector.com/?new_locale=zh-cn').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_20_4_8(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://mydetector.ai/zh/').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_21_4_7(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://matrix.tencent.com/ai-detect/ai_gen').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_22_4_6(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://mydetector.ai/zh/ai-image-detector/').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_23_4_5(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://www.aidetectlab.com/zh').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function initializeEvents() {
+  const element_2_18 = document.getElementById('2_18');
+  if (element_2_18) {
+    EventManager.addHandler(element_2_18, 'click', handle_2_18_4_10);
+  }
+
+  const element_2_19 = document.getElementById('2_19');
+  if (element_2_19) {
+    EventManager.addHandler(element_2_19, 'click', handle_2_19_4_9);
+  }
+
+  const element_2_20 = document.getElementById('2_20');
+  if (element_2_20) {
+    EventManager.addHandler(element_2_20, 'click', handle_2_20_4_8);
+  }
+
+  const element_2_21 = document.getElementById('2_21');
+  if (element_2_21) {
+    EventManager.addHandler(element_2_21, 'click', handle_2_21_4_7);
+  }
+
+  const element_2_22 = document.getElementById('2_22');
+  if (element_2_22) {
+    EventManager.addHandler(element_2_22, 'click', handle_2_22_4_6);
+  }
+
+  const element_2_23 = document.getElementById('2_23');
+  if (element_2_23) {
+    EventManager.addHandler(element_2_23, 'click', handle_2_23_4_5);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeEvents);
+} else {
+  initializeEvents();
+}
+</script>
+
+</body>
+</html>

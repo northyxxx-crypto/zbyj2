@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策 - 智标云鉴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        body {
+            background: url('./images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f0f7ff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .article-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.3s forwards;
+        }
+
+        .article-meta {
+            color: #718096;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-intro {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            padding: 25px 30px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out 0.6s forwards;
+        }
+
+        .article-intro p {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        .article-content {
+            padding-top: 10px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.7s; }
+        .section:nth-child(2) { animation-delay: 0.8s; }
+        .section:nth-child(3) { animation-delay: 0.9s; }
+        .section:nth-child(4) { animation-delay: 1s; }
+        .section:nth-child(5) { animation-delay: 1.1s; }
+        .section:nth-child(6) { animation-delay: 1.2s; }
+        .section:nth-child(7) { animation-delay: 1.3s; }
+
+        .section h2 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8eaf6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .section > p {
+            line-height: 2;
+            color: #4a5568;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 12px 0;
+            padding: 0;
+            background: rgba(102, 126, 234, 0.03);
+            border-radius: 10px;
+            padding: 15px 20px;
+        }
+
+        .section ul li {
+            line-height: 2;
+            color: #4a5568;
+            font-size: 1.05rem;
+            padding: 6px 0 6px 28px;
+            position: relative;
+            border-bottom: 1px dashed rgba(102, 126, 234, 0.12);
+        }
+
+        .section ul li:last-child {
+            border-bottom: none;
+        }
+
+        .section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.08), rgba(102, 126, 234, 0.08));
+            padding: 18px 22px;
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            margin: 15px 0;
+        }
+
+        .highlight-box p {
+            color: #5a6578;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .decoration {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            opacity: 0.15;
+        }
+
+        .article-container {
+            position: relative;
+        }
+
+        .article-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-container {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .article-footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px dashed #e2e8f0;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .article-footer p {
+            color: #667eea;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        /* 返回按钮样式 */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.8s forwards;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
+        .back-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #667eea;
+            transition: fill 0.3s ease;
+        }
+
+        .back-btn:hover svg {
+            fill: #764ba2;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .article-container {
+                padding: 30px 25px;
+                border-radius: 16px;
+            }
+
+            .article-title {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .section h2 {
+                font-size: 1.15rem;
+            }
+
+            .section > p,
+            .section ul li {
+                font-size: 1rem;
+            }
+
+            .article-intro {
+                padding: 18px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index/Index.html" class="back-btn" title="返回首页">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+    </a>
+    <div class="article-container">
+        <svg class="decoration" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="1.5">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        
+        <div class="article-header">
+            <h1 class="article-title">隐私政策</h1>
+            <div class="article-meta">
+                更新日期：2026年4月12日<br>
+                生效日期：2026年4月12日
+            </div>
+        </div>
+
+        <div class="article-intro">
+            <p>欢迎使用"智标云鉴"一站式转载内容AI标识责任界定助手与合规检测平台（以下简称"本平台"）。本平台由【数法求真队】（以下简称"我们"或"本团队"）提供。我们深知隐私对您的重要性，并会尽全力保护您的个人信息安全。请在使用本平台前，仔细阅读并充分理解本隐私政策。</p>
+        </div>
+        
+        <div class="article-content">
+            <div class="section">
+                <h2>一、我们收集的信息</h2>
+                <p>为向您提供AI标识检测、合规知识查阅、责任量化模拟等核心服务，我们仅收集必要的信息：</p>
+                <ul>
+                    <li><strong>文本与链接信息：</strong>当您使用"AI检测工具查询"或"一键转载主流AI检测入口"功能时，您可能需要输入或粘贴待检测的文本内容、文章链接或截图。我们将仅对上述内容进行AI标识合规性分析，不会用于模型训练或对外分享。</li>
+                    <li><strong>设备相册/相机信息：</strong>仅当使用图片上传时，若您通过截图或拍照方式检测图片中的C2PA水印、元数据等AI标识，我们会请求您的相册权限或相机权限。您选择的图片仅在检测过程中临时处理，不保存至服务器。</li>
+                    <li><strong>用户输入的责任量化参数：</strong>当您使用"AI标识缺失责任量化计算器"、"损害扩散模拟器"或"多主体责任量化分配模拟器"时，您输入的传播范围、平台类型、责任权重等各类参数将仅在您的设备本地计算，或进行匿名化处理后用于生成模拟结果，不会关联您的个人身份。</li>
+                    <li><strong>合规知识库访问记录：</strong>为优化内容推荐，我们会记录您在"法律法规|典型案例|合规操作指引"模块中的点击与浏览行为。该类数据不涉及个人身份，仅用于统计分析。</li>
+                    <li><strong>用户反馈内容：</strong>当您通过"用户反馈"功能联系我们时，我们会收集您提交的联系方式（可选）及反馈内容，以便回复和处理您的问题。</li>
+                    <li><strong>设备基础信息：</strong>为保障平台正常运行及排查故障，我们会收集您的设备型号、操作系统版本、平台唯一标识、网络类型等基础技术信息。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>二、我们如何收集您的信息</h2>
+                <ul>
+                    <li>在您主动输入文本、上传图片、调整模拟器参数或提交反馈时，通过平台功能接口获取相应数据。</li>
+                    <li>在您首次使用相机或相册功能时，通过系统弹窗征得您的授权同意。</li>
+                    <li>通过平台运行日志自动获取设备基础信息。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>三、我们如何使用您的信息</h2>
+                <ul>
+                    <li><strong>核心功能：</strong>提供AI标识检测、合规知识检索、责任量化模拟与责任分配分析。</li>
+                    <li><strong>优化服务：</strong>在匿名化处理后，用于提升检测准确率、优化模拟算法及改善知识库内容。</li>
+                    <li><strong>安全保障：</strong>监测和防止滥用、欺诈或非法行为。</li>
+                    <li><strong>用户沟通：</strong>回复您的反馈与建议。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>四、信息的共享、转让与公开披露</h2>
+                <p>我们不会与任何第三方共享您的个人数据，除非：</p>
+                <ul>
+                    <li>获得您的明确同意；</li>
+                    <li>法律法规或政府机关强制性要求；</li>
+                    <li>为维护国家安全、公共安全或您的重大合法权益。</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>特别说明：</strong>"一键转载主流AI检测入口" 功能会引导您跳转至第三方检测平台。请您注意，第三方平台的数据处理行为适用其自身的隐私政策，建议您在使用前仔细阅读。</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>五、您的权利</h2>
+                <p>您可以通过以下方式管理您的信息：</p>
+                <ul>
+                    <li><strong>撤回授权：</strong>在手机系统设置中关闭相机或相册权限。</li>
+                    <li><strong>删除数据：</strong>您可随时清除平台本地缓存或通过【联系我们】要求删除您的历史检测记录及反馈内容。</li>
+                    <li><strong>拒绝提供信息：</strong>拒绝提供非必要信息不影响您使用知识库查阅等功能，但可能影响AI检测或量化模拟的完整性。</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>六、数据存储与安全</h2>
+                <ul>
+                    <li><strong>检测图片：</strong>采用实时处理、不落地存储原则。</li>
+                    <li><strong>模拟参数：</strong>优先在本地计算，不上传服务器。</li>
+                    <li><strong>服务器数据：</strong>用户反馈及合规浏览记录存储于中国境内服务器，采用SSL加密传输及访问控制。</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>尽管我们会尽力保护，但请理解任何互联网传输或电子存储方式均非100%安全。</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>七、本政策的更新</h2>
+                <p>我们可能会适时更新本隐私政策。收集信息类型变化、数据使用方式调整等重大变更将通过平台弹窗或公告方式通知您。继续使用即表示同意更新后的政策。</p>
+            </div>
+        </div>
+
+        <div class="article-footer">
+            <p>数法求真队</p>
+        </div>
+    </div>
+</body>
+</html>

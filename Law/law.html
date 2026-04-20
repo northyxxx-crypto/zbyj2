@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixso HTML</title>
+  <link rel="stylesheet" href="css/font.css">
+  <script src="js/animation.js"></script>
+  <style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ol,ul,menu {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+ol li::marker, ul li::before {
+  letter-spacing: 0;
+}
+
+.scroll-container > div {
+  width: 100%;
+}
+
+.container > div {
+  width: 100%;
+}
+
+.canvas-0_1 > div {
+  width: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body { 
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+}
+    
+span {
+  word-break: break-word;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.frame-6_1 {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rectangle-2_49 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/0215edfdec15c8dfb6f8b0a8c028ca1851dd6f3a.png);
+}
+
+.rectangle-6_9 {
+  width: 711px;
+  height: 374px;
+  position: absolute;
+  left: 1023px;
+  top: 341px;
+  background-size: 270.0422% 288.7700%;
+  background-position: -1023.00px -341.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/a75b6e19c85d05ec976adf1d6a85d7bce56d53ac.png);
+}
+
+.rectangle-2_51 {
+  width: 711px;
+  height: 179px;
+  position: absolute;
+  left: 193px;
+  top: 327px;
+  background-size: 270.0422% 603.3519%;
+  background-position: -193.00px -327.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/5c3ca3040113a9f067598cb276aaebe235e04bb7.png);
+}
+
+.rectangle-2_52 {
+  width: 711px;
+  height: 161px;
+  position: absolute;
+  left: 193px;
+  top: 554px;
+  background-size: 270.0422% 670.8074%;
+  background-position: -193.00px -554.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/a2bd43b5c91a023c3e068cc990b4fd8a0ecf2a3b.png);
+}
+
+.rectangle-2_74 {
+  width: 711px;
+  height: 161px;
+  position: absolute;
+  left: 193px;
+  top: 774px;
+  background-size: 270.0422% 670.8074%;
+  background-position: -193.00px -774.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/20fd71cdf8bb1edc84c14127b807d1937292d8b7.png);
+}
+
+.rectangle-2_75 {
+  width: 711px;
+  height: 161px;
+  position: absolute;
+  left: 1023px;
+  top: 774px;
+  background-size: 270.0422% 670.8074%;
+  background-position: -1023.00px -774.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/b67e8ee456bd518ed733b0e786dc5bac89570734.png);
+}
+
+.rectangle-5_9 {
+  width: 622px;
+  height: 48px;
+  position: absolute;
+  left: 1073px;
+  top: 506px;
+  background-size: 308.6817% 2250.0001%;
+  background-position: -1073.00px -506.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/91fc91f3f9c462755cb7943edd97d85035c09013.png);
+}
+
+.rectangle-5_11 {
+  width: 496px;
+  height: 48px;
+  position: absolute;
+  left: 1057px;
+  top: 567px;
+  background-size: 387.0967% 2250.0003%;
+  background-position: -1058.82px -458.13px;
+  background-repeat: no-repeat;
+  background-image: url(./image/0375edf3f18379c3b37aaae1fd7187848e0f219b.png);
+}
+
+.rectangle-5_12 {
+  width: 622px;
+  height: 48px;
+  position: absolute;
+  left: 1073px;
+  top: 615px;
+  background-size: 308.6817% 2249.9998%;
+  background-position: -1073.00px -505.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/403932f68807313fb3d8bb923ba71d3edb006b16.png);
+}
+
+/* ==========================================================================
+   🔥 按钮悬停效果
+========================================================================== */
+.btn-effect {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-effect:hover {
+  transform: scale(1.03);
+  filter: brightness(1.12) drop-shadow(0 0 12px rgba(255, 255, 255, 0.25));
+}
+.btn-effect:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+/* 返回工具箱按钮 */
+.back-home {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.back-home:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+}
+.back-home:active {
+  transform: scale(0.92);
+}
+
+  </style>
+</head>
+<body>
+
+<a href="../index/Index.html" class="back-home">
+  <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M11 2L5 8l6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+  返回首页
+</a>
+
+<div class="container">
+  <div id="6_1" class="frame-6_1">
+    <div id="2_49" class="rectangle-2_49"></div>
+    <div id="6_9" class="rectangle-6_9"></div>
+    <div id="2_51" class="rectangle-2_51 btn-effect" style="cursor: pointer;"></div>
+    <div id="2_52" class="rectangle-2_52 btn-effect" style="cursor: pointer;"></div>
+    <div id="2_74" class="rectangle-2_74 btn-effect" style="cursor: pointer;"></div>
+    <div id="2_75" class="rectangle-2_75 btn-effect" style="cursor: pointer;"></div>
+    <div id="5_9" class="rectangle-5_9 btn-effect" style="cursor: pointer;"></div>
+    <div id="5_11" class="rectangle-5_11 btn-effect" style="cursor: pointer;"></div>
+    <div id="5_12" class="rectangle-5_12 btn-effect" style="cursor: pointer;"></div>
+  </div>
+</div>
+
+<script>
+const EventManager = {
+  handlers: new Map(),
+  addHandler(element, eventType, handler) {
+    if (!this.handlers.has(element)) {
+      this.handlers.set(element, {
+        boundEvents: new Set(),
+        blockingHandler: (e) => {
+          if (e.target === element || !element.contains(e.target)) {
+            if (!this.handlers.get(element).boundEvents.has(e.type)) {
+              e.stopPropagation();
+            }
+          }
+        }
+      });
+      const allEvents = ['mousedown', 'mouseup', 'click', 'dblclick', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave'];
+      allEvents.forEach(type => {
+        element.addEventListener(type, this.handlers.get(element).blockingHandler, true);
+      });
+    }
+    this.handlers.get(element).boundEvents.add(eventType);
+    element.addEventListener(eventType, handler);
+  }
+};
+
+function handle_2_51_6_8(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://flk.npc.gov.cn/detail?id=021e7d7684474107b8f3febbb1c4f8b5&fileId=&type=&title=%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%B3%95').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_52_6_7(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://flk.npc.gov.cn/detail?id=ff8081819c230fa1019c2d0fca0b4b0a&fileId=&type=&title=%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_74_6_6(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=F32EA2A561F1886CD8D606513512D547').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_75_6_5(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://www.gov.cn/zhengce/zhengceku/202503/content_7014286.htm').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_5_9_6_4(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://www.gov.cn/zhengce/zhengceku/202307/content_6891752.htm').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_5_11_6_3(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://flk.npc.gov.cn/detail?id=ff8081819c230fa1019c2d0fca0b4b0a&fileId=&type=&title=%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_5_12_6_2(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://www.gov.cn/zhengce/zhengceku/2022-12/12/content_5731431.htm').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function initializeEvents() {
+  const element_2_51 = document.getElementById('2_51');
+  if (element_2_51) {
+    EventManager.addHandler(element_2_51, 'click', handle_2_51_6_8);
+  }
+
+  const element_2_52 = document.getElementById('2_52');
+  if (element_2_52) {
+    EventManager.addHandler(element_2_52, 'click', handle_2_52_6_7);
+  }
+
+  const element_2_74 = document.getElementById('2_74');
+  if (element_2_74) {
+    EventManager.addHandler(element_2_74, 'click', handle_2_74_6_6);
+  }
+
+  const element_2_75 = document.getElementById('2_75');
+  if (element_2_75) {
+    EventManager.addHandler(element_2_75, 'click', handle_2_75_6_5);
+  }
+
+  const element_5_9 = document.getElementById('5_9');
+  if (element_5_9) {
+    EventManager.addHandler(element_5_9, 'click', handle_5_9_6_4);
+  }
+
+  const element_5_11 = document.getElementById('5_11');
+  if (element_5_11) {
+    EventManager.addHandler(element_5_11, 'click', handle_5_11_6_3);
+  }
+
+  const element_5_12 = document.getElementById('5_12');
+  if (element_5_12) {
+    EventManager.addHandler(element_5_12, 'click', handle_5_12_6_2);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeEvents);
+} else {
+  initializeEvents();
+}
+</script>
+
+</body>
+</html>

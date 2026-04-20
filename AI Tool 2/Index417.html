@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixso HTML</title>
+  <link rel="stylesheet" href="css/font.css">
+  <script src="js/animation.js"></script>
+  <style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ol,ul,menu {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+ol li::marker, ul li::before {
+  letter-spacing: 0;
+}
+
+.scroll-container > div {
+  width: 100%;
+}
+
+.container > div {
+  width: 100%;
+}
+
+.canvas-0_1 > div {
+  width: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body { 
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+}
+    
+span {
+  word-break: break-word;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.frame-4_17 {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rectangle-2_25 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/7ee66b96b1a43f1d0d61db7e1953b9e7cc24c643.png);
+}
+
+.rectangle-2_31 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/a54ab73ab3ed6684366a8fb9ff81aeeed57c1b21.png);
+}
+
+.rectangle-2_28 {
+  width: 1411px;
+  height: 883px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: 136.0737% 122.3103%;
+  background-position: 0.00px 0.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/c1c1bb217e095979a03df787b7ba9122684ecb05.png);
+}
+
+.rectangle-2_34 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/7788f6c91e631797d7ea3f4863f95e8dd003d61f.png);
+}
+
+.rectangle-2_29 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 471px;
+  top: 225px;
+  background-size: 437.3575% 654.5455%;
+  background-position: -471.00px -225.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/7b68145667cf77ce2e3d520d9f601bd42f892672.png);
+}
+
+.rectangle-2_30 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 1025px;
+  top: 225px;
+  background-size: 437.3576% 654.5455%;
+  background-position: -1025.00px -225.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/348b4f487798a236cdf39e981528210a6186c60d.png);
+}
+
+.rectangle-2_32 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 759px;
+  top: 540px;
+  background-size: 437.3576% 654.5455%;
+  background-position: -759.00px -540.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/c4413c6a4eaaa4e857f56e01a004a68db2bbd77a.png);
+}
+
+.rectangle-2_33 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 1261px;
+  top: 540px;
+  background-size: 437.3577% 654.5455%;
+  background-position: -1261.00px -540.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/60a1b063863a919aec76fd4b15416839f716cc90.png);
+}
+
+.rectangle-2_35 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 1025px;
+  top: 863px;
+  background-size: 437.3576% 654.5455%;
+  background-position: -1025.00px -863.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/3d44ca9e42901e1352cc1eb345b82a79f5e836d1.png);
+}
+
+.rectangle-2_36 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 223px;
+  top: 540px;
+  background-size: 437.3576% 654.5455%;
+  background-position: -223.00px -540.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/8791df7d2785d84226355c1fb0c2353663a6aa40.png);
+}
+
+.rectangle-2_37 {
+  width: 439px;
+  height: 165px;
+  position: absolute;
+  left: 471px;
+  top: 863px;
+  background-size: 437.3576% 654.5453%;
+  background-position: -471.00px -226.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/7b68145667cf77ce2e3d520d9f601bd42f892672.png);
+}
+
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="4_17" class="frame-4_17">
+    <div id="2_25" class="rectangle-2_25"></div>
+    <div id="2_31" class="rectangle-2_31"></div>
+    <div id="2_28" class="rectangle-2_28"></div>
+    <div id="2_34" class="rectangle-2_34"></div>
+    <div id="2_29" class="rectangle-2_29" style="cursor: pointer;"></div>
+    <div id="2_30" class="rectangle-2_30" style="cursor: pointer;"></div>
+    <div id="2_32" class="rectangle-2_32" style="cursor: pointer;"></div>
+    <div id="2_33" class="rectangle-2_33" style="cursor: pointer;"></div>
+    <div id="2_35" class="rectangle-2_35" style="cursor: pointer;"></div>
+    <div id="2_36" class="rectangle-2_36" style="cursor: pointer;"></div>
+    <div id="2_37" class="rectangle-2_37" style="cursor: pointer;"></div>
+  </div>
+</div>
+
+<script>
+const EventManager = {
+  handlers: new Map(),
+  addHandler(element, eventType, handler) {
+    if (!this.handlers.has(element)) {
+      this.handlers.set(element, {
+        boundEvents: new Set(),
+        blockingHandler: (e) => {
+          if (e.target === element || !element.contains(e.target)) {
+            if (!this.handlers.get(element).boundEvents.has(e.type)) {
+              e.stopPropagation();
+            }
+          }
+        }
+      });
+      const allEvents = ['mousedown', 'mouseup', 'click', 'dblclick', 'mouseover', 'mouseout', 'mouseenter', 'mouseleave'];
+      allEvents.forEach(type => {
+        element.addEventListener(type, this.handlers.get(element).blockingHandler, true);
+      });
+    }
+    this.handlers.get(element).boundEvents.add(eventType);
+    element.addEventListener(eventType, handler);
+  }
+};
+
+function handle_2_29_4_25(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://matrix.tencent.com/ai-detect/ai_gen').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_30_4_24(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://undetectable.ai/zh/ai-video-detector').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_32_4_23(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://www.pindrop.com/product/pindrop-pulse/inspect/').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_33_4_22(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://hivemoderation.com/ai-generated-content-detection').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_35_4_21(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://mydetector.ai/zh/').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_36_4_20(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://aivoicedetector.com/').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function handle_2_37_4_19(event) {
+  event.stopPropagation();
+  setTimeout(() => {
+    const rawUrl = String('https://undetectable.ai/zh/ai-video-detector').trim();
+  const safeUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+  window.open(safeUrl, '_blank');
+  }, 300);
+}
+
+function initializeEvents() {
+  const element_2_29 = document.getElementById('2_29');
+  if (element_2_29) {
+    EventManager.addHandler(element_2_29, 'click', handle_2_29_4_25);
+  }
+
+  const element_2_30 = document.getElementById('2_30');
+  if (element_2_30) {
+    EventManager.addHandler(element_2_30, 'click', handle_2_30_4_24);
+  }
+
+  const element_2_32 = document.getElementById('2_32');
+  if (element_2_32) {
+    EventManager.addHandler(element_2_32, 'click', handle_2_32_4_23);
+  }
+
+  const element_2_33 = document.getElementById('2_33');
+  if (element_2_33) {
+    EventManager.addHandler(element_2_33, 'click', handle_2_33_4_22);
+  }
+
+  const element_2_35 = document.getElementById('2_35');
+  if (element_2_35) {
+    EventManager.addHandler(element_2_35, 'click', handle_2_35_4_21);
+  }
+
+  const element_2_36 = document.getElementById('2_36');
+  if (element_2_36) {
+    EventManager.addHandler(element_2_36, 'click', handle_2_36_4_20);
+  }
+
+  const element_2_37 = document.getElementById('2_37');
+  if (element_2_37) {
+    EventManager.addHandler(element_2_37, 'click', handle_2_37_4_19);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeEvents);
+} else {
+  initializeEvents();
+}
+</script>
+
+</body>
+</html>

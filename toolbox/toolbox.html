@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixso HTML</title>
+  <link rel="stylesheet" href="css/font.css">
+  <script src="js/animation.js"></script>
+  <style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ol,ul,menu {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+ol li::marker, ul li::before {
+  letter-spacing: 0;
+}
+
+.scroll-container > div {
+  width: 100%;
+}
+
+.container > div {
+  width: 100%;
+}
+
+.Pixso-canvas-0_1 > div {
+  width: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body { 
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: white;
+}
+    
+span {
+  word-break: break-word;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-container {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.Pixso-canvas-0_1 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.Pixso-frame-5_1 {
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.Pixso-rectangle-2_78 {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(./image/201d88e87e6f2c0d5508ed960df1ee4e5b403896.png);
+}
+
+.Pixso-rectangle-2_80 {
+  width: 1251px;
+  height: 220px;
+  position: absolute;
+  left: 362px;
+  top: 278px;
+  background-size: 153.4772% 490.9091%;
+  background-position: -362.00px -278.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/e0f852d0ff317bfa87016a8e1137ee84f40d8903.png);
+}
+
+.Pixso-rectangle-2_81 {
+  width: 1251px;
+  height: 220px;
+  position: absolute;
+  left: 362px;
+  top: 808px;
+  background-size: 153.4772% 490.9091%;
+  background-position: -362.00px -808.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/016a075c7b188d73375ab1fd8c697eee89dda4c9.png);
+}
+
+.Pixso-rectangle-2_82 {
+  width: 1251px;
+  height: 234px;
+  position: absolute;
+  left: 362px;
+  top: 540px;
+  background-size: 153.4772% 461.5385%;
+  background-position: -362.00px -540.00px;
+  background-repeat: no-repeat;
+  background-image: url(./image/a1620763eedfab4902f428c9d59d19bc2eab9f8a.png);
+}
+
+/* 按钮交互效果 */
+.Pixso-rectangle-2_80,
+.Pixso-rectangle-2_81,
+.Pixso-rectangle-2_82 {
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              filter 0.3s ease;
+  transform-origin: center center;
+}
+
+.Pixso-rectangle-2_80:hover,
+.Pixso-rectangle-2_81:hover,
+.Pixso-rectangle-2_82:hover {
+  transform: scale(1.02);
+  filter: brightness(1.08);
+}
+
+.Pixso-rectangle-2_80:active,
+.Pixso-rectangle-2_81:active,
+.Pixso-rectangle-2_82:active {
+  transform: scale(0.96);
+  filter: brightness(0.92);
+}
+
+/* 点击波纹效果 */
+.click-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+  transform: scale(0);
+  animation: ripple-effect 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 按钮按下状态指示器 */
+.btn-pressed {
+  animation: press-pulse 0.3s ease-out;
+}
+
+@keyframes press-pulse {
+  0% {
+    transform: scale(0.96);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 发光边框效果 */
+.Pixso-rectangle-2_80::after,
+.Pixso-rectangle-2_81::after,
+.Pixso-rectangle-2_82::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent, rgba(255,255,255,0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.Pixso-rectangle-2_80:hover::after,
+.Pixso-rectangle-2_81:hover::after,
+.Pixso-rectangle-2_82:hover::after {
+  opacity: 1;
+}
+
+/* 移动端触摸反馈 */
+@media (hover: none) {
+  .Pixso-rectangle-2_80,
+  .Pixso-rectangle-2_81,
+  .Pixso-rectangle-2_82 {
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  
+  .Pixso-rectangle-2_80:active,
+  .Pixso-rectangle-2_81:active,
+  .Pixso-rectangle-2_82:active {
+    transform: scale(0.96);
+    filter: brightness(0.95);
+  }
+}
+
+/* 返回首页按钮 */
+.back-home {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.back-home:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+}
+.back-home:active {
+  transform: scale(0.92);
+}
+
+  </style>
+</head>
+<body>
+
+<a href="../index/Index.html" class="back-home">
+  <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M11 2L5 8l6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+  返回首页
+</a>
+
+<div class="scroll-container">
+  <div id="0_1" class="Pixso-canvas-0_1">
+    <div id="5_1" class="Pixso-frame-5_1">
+      <div id="2_78" class="Pixso-rectangle-2_78"></div>
+      <div id="2_80" class="Pixso-rectangle-2_80"></div>
+      <div id="2_81" class="Pixso-rectangle-2_81"></div>
+      <div id="2_82" class="Pixso-rectangle-2_82"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const $ = id => document.getElementById(id);
+
+CustomEase.create("LINEAR", "0,0,1,1");
+
+const tl_1 = gsap.timeline({ paused: true })
+  .set($('5_1'), {position: 'absolute', top: 0, left: 0})
+  .set($('0_0'), {position: 'absolute', top: 0, left: 0})
+  .set($('0_0'), { display: 'block', x: '0%', y: '0%', opacity: 1 })
+    .to($('5_1'), { display: 'none', duration: '0' });
+
+// 波纹效果函数
+function createRipple(event, element) {
+  const ripple = document.createElement('span');
+  ripple.className = 'click-ripple';
+  
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
+  
+  element.appendChild(ripple);
+  
+  ripple.addEventListener('animationend', () => {
+    ripple.remove();
+  });
+}
+
+// 按钮点击反馈
+function addButtonFeedback(elementId, targetUrl) {
+  const element = $(elementId);
+  
+  element.addEventListener('click', e => {
+    e.stopPropagation();
+    createRipple(e, element);
+    
+    element.classList.add('btn-pressed');
+    
+    setTimeout(() => {
+      element.classList.remove('btn-pressed');
+      window.location.href = targetUrl;
+    }, 150);
+  });
+}
+
+addButtonFeedback('2_80', '../Law/law.html');
+addButtonFeedback('2_81', '../turtorial/turtorial.html');
+addButtonFeedback('2_82', '../case/casev2.html');
+
+const tl_2 = gsap.timeline({ paused: true })
+  .set($('5_1'), {position: 'absolute', top: 0, left: 0})
+  .set($('0_0'), {position: 'absolute', top: 0, left: 0})
+  .set($('0_0'), { display: 'block', x: '0%', y: '0%', opacity: 1 })
+    .to($('5_1'), { display: 'none', duration: '0' });
+
+const tl_3 = gsap.timeline({ paused: true })
+  .set($('5_1'), {position: 'absolute', top: 0, left: 0})
+  .set($('0_0'), {position: 'absolute', top: 0, left: 0})
+  .set($('0_0'), { display: 'block', x: '0%', y: '0%', opacity: 1 })
+    .to($('5_1'), { display: 'none', duration: '0' });
+
+</script>
+
+</body>
+</html>
